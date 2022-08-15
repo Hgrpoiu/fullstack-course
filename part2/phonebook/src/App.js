@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import DisplayInfo from "./components/DisplayInfo";
 import Filter from "./components/Filter";
 import GetInfo from "./components/GetInfo";
-import axios from "axios";
 import contacts from "./services/contacts";
 import Notification from "./components/Notification";
 
@@ -12,7 +11,7 @@ const App = () => {
   const [newPhone, setNewPhone] = useState("");
   const [newFilter, setFilter] = useState("");
   const [msg, setMsg] = useState(null);
-  const [error,setError]=useState(false);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     contacts.getAll().then((response) => {
@@ -23,6 +22,7 @@ const App = () => {
   function handleName(e) {
     e.preventDefault();
     let index = 0;
+    //Check to see if their name is already present, update if so. Else Create new
     if (
       persons.some((person, i) => {
         index = i;
@@ -39,7 +39,7 @@ const App = () => {
         })
         .catch((error) => {
           setError(true);
-          setMsg(`${newName} was already removed from the server :(`);
+          setMsg(error.response.data.error);
         });
     } else {
       contacts.create(newName, newPhone).then((response) => {
@@ -62,10 +62,15 @@ const App = () => {
       }
     };
   }
-  
+
   return (
     <div>
-      <Notification message={msg} error={error} setMsg={setMsg} setError={setError} />
+      <Notification
+        message={msg}
+        error={error}
+        setMsg={setMsg}
+        setError={setError}
+      />
       <Filter
         handleFilter={(e) => {
           setFilter(e.target.value);
