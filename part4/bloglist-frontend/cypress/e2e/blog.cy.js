@@ -59,7 +59,7 @@ describe("Blog app", () => {
       cy.get("#blogSubmit").click()
 
       cy.get("#hide-View").click()
-      cy.get('#like-button').click()
+      cy.get('#like-button-First-blog').click()
 
       cy.contains("likes:1")
     })
@@ -77,7 +77,7 @@ describe("Blog app", () => {
       cy.should("not.contain","First blog")
     })
 
-    it.only("Sort by likes",function(){
+    it("Sort by likes",function(){
       cy.createBlog("First blog","User")
       cy.createBlog("Second blog","User")
       cy.createBlog("Third blog","User")
