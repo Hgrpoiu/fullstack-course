@@ -2,21 +2,24 @@ import axios from "axios";
 const baseUrl = "/api/blogs";
 let Token = "";
 
-const getAll = async () => {
+async function getAll() {
   const request = (await axios.get(baseUrl)).data;
-  request.sort((blog1, blog2) => {
-    return blog2.likes - blog1.likes;
-  });
   return request;
-};
+}
 
-export async function postBlog(blog) {
+async function getOne(id) {
+  const request = (await axios.get(`/api/blogs/${id}`)).data;
+
+  return request;
+}
+
+async function postBlog(blog) {
   return await axios.post(baseUrl, blog, { headers: { Authorization: Token } });
 }
-export function setToken(token) {
+function setToken(token) {
   Token = `bearer ${token}`;
 }
-export async function likeBlog(blog) {
+async function likeBlog(blog) {
   const newBlog = {
     title: blog.title,
     author: blog.author,
@@ -29,10 +32,24 @@ export async function likeBlog(blog) {
   return b;
 }
 
-export async function delBlog(blog) {
+async function delBlog(blog) {
   return await axios.delete(`/api/blogs/${blog.id}`, {
     headers: { Authorization: Token },
   });
 }
 
-export default { getAll };
+async function addComment(id, comment) {
+  return await axios.post(`/api/blogs/${id}/comments`, { comment });
+}
+
+const services = {
+  getAll,
+  postBlog,
+  delBlog,
+  setToken,
+  likeBlog,
+  getOne,
+  addComment,
+};
+
+export default services;

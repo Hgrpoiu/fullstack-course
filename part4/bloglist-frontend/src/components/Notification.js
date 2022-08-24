@@ -1,15 +1,19 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "../index.css"
+import "../index.css";
+import { useSelector } from "react-redux";
 
 function Notification(props) {
-  if (props.message === null) {
+  const msg = useSelector((state) => state.msgs);
+
+  if (!msg.display) {
     return null;
   }
+  
 
   return (
-    <div className={props.error ? "error" : "notification"}>
-      {props.message}
+    <div className="notification">
+      {msg.msg}
     </div>
   );
 }

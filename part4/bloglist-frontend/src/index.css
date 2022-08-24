@@ -28,4 +28,46 @@
 
 ul{
   list-style: none;
+  padding:0px;
+}
+
+.Link{
+  padding:10px;
+  color: rgb(37, 37, 37);
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.Mover{
+  background-color: rgb(231, 197, 124);
+  padding:15px;
+  margin-bottom: 10px;
+  border-radius:15px
+  
+}
+
+.card{
+  padding:10px;
+  border-radius:15px;
+  margin-bottom: 10px;
+  background-color: rgb(224, 201, 71)
+}
+
+button{
+  display: inline-block;
+  border:none;
+  text-align: center;
+  padding:7px 15px;
+  background-color: rgb(241, 183, 139);
+  color: rgb(88, 15, 0);
+  border-radius: 15px;
+  border-color: rgb(212, 144, 91);
+  border-style: solid;
+}
+
+.zoomedblog{
+  background-color: rgb(236, 225, 168);
+  padding:10px;
+  border-radius:15px;
+  margin-bottom: 10px;
 }

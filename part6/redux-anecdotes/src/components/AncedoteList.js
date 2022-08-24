@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { initAnces, setAnces, stateVote } from "../reducers/anceReducer";
 import { useDispatch, useSelector } from "react-redux";
 import { removeMsg, setMsg, setNotif } from "../reducers/msgReducer";
-import { getAll } from "../services/ancedotes";
 import {voteAnec} from "../reducers/anceReducer"
 
 function AncedoteList(props) {
